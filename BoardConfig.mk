@@ -1,3 +1,25 @@
+# Copyright (C) 2016 The CyanogenMod Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#
+# This file sets variables that control the way modules are built
+# thorughout the system. It should not be used to conditionally
+# disable makefiles (the proper mechanism to control what gets
+# included in a build is to use PRODUCT_PACKAGES in a product
+# definition file).
+#
+
 DEVICE_TREE := device/oneplus/oneplus3t
 
 # Bootloader
@@ -32,7 +54,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CONFIG := twrp_defconfig
-TARGET_KERNEL_DEVICE_DEFCONFIG := device_oneplus_3T
+#TARGET_KERNEL_DEVICE_DEFCONFIG := device_oneplus_3T
 
 TARGET_PREBUILT_KERNEL := $(DEVICE_TREE)/Image.gz-dtb
 
@@ -41,6 +63,11 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 an
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_oneplus3t
+TARGET_RECOVERY_DEVICE_MODULES := libinit_oneplus3t
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 0x0004000000
@@ -67,6 +94,7 @@ TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 149
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INCLUDE_NTFS_3G := true
+RECOVERY_VARIANT := twrp
 
 # exFAT drivers included in the kernel
 TW_NO_EXFAT_FUSE := true
@@ -84,3 +112,32 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Debug flags
 TWRP_INCLUDE_LOGCAT := true
+
+# MR config. MultiROM also uses parts of TWRP config
+TARGET_RECOVERY_IS_MULTIROM := true
+MR_NO_KEXEC := 2
+MR_ALLOW_NKK71_NOKEXEC_WORKAROUND := true
+MR_CONTINUOUS_FB_UPDATE := true
+MR_DPI := xhdpi
+MR_DPI_FONT := 340
+MR_USE_MROM_FSTAB := true
+MR_FSTAB := $(DEVICE_TREE)/multirom/mrom.fstab
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := $(DEVICE_TREE)/multirom/mr_init_devices.c
+MR_KEXEC_MEM_MIN := 0x00200000
+MR_KEXEC_DTB := true
+MR_DEVICE_HOOKS := $(DEVICE_TREE)/multirom/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 4
+MR_DEVICE_VARIANTS := OnePlus3
+MR_USE_QCOM_OVERLAY := true
+MR_QCOM_OVERLAY_HEADER := $(DEVICE_TREE)/multirom/mr_qcom_overlay.h
+MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
+# bootmenu
+DEVICE_RESOLUTION := 1080x1920
+MR_PIXEL_FORMAT := "RGBA_8888"
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+MR_DEV_BLOCK_BOOTDEVICE := true
+
+#Force populating /dev/block/platform/msm_sdcc.1/by-name
+#from the emmc
+MR_POPULATE_BY_NAME_PATH := "/dev/block/platform/msm_sdcc.1/by-name"

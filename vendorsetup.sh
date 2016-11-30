@@ -1,1 +1,1 @@
-add_lunch_combo omni_oneplus3t-eng
+add_lunch_combo bliss_oneplus3t-eng
