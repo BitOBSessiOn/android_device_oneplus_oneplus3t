@@ -72,9 +72,12 @@ TARGET_SPECIFIC_HEADER_PATH := $(BOARD_PATH)/include
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
 TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+
 COMMON_GLOBAL_CFLAGS += -DSNDRV_COMPRESS_SET_NEXT_TRACK_PARAM
 
 # Display
+BOARD_USES_ADRENO := true
 TARGET_QCOM_DISPLAY_VARIANT := caf-msm8996
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
@@ -119,3 +122,32 @@ TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_DEFAULT_LANGUAGE := en-US
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_CRYPTO := true
+
+# MR config. MultiROM also uses parts of TWRP config
+TARGET_RECOVERY_IS_MULTIROM := true
+MR_NO_KEXEC := 2
+MR_ALLOW_NKK71_NOKEXEC_WORKAROUND := true
+MR_CONTINUOUS_FB_UPDATE := true
+MR_DPI := xhdpi
+MR_DPI_FONT := 340
+MR_USE_MROM_FSTAB := true
+MR_FSTAB := device/oneplus/oneplus3/multirom/mrom.fstab
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := device/oneplus/oneplus3/multirom/mr_init_devices.c
+MR_KEXEC_MEM_MIN := 0x00200000
+MR_KEXEC_DTB := true
+MR_DEVICE_HOOKS := device/oneplus/oneplus3/multirom/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 4
+MR_DEVICE_VARIANTS := OnePlus3
+MR_USE_QCOM_OVERLAY := true
+MR_QCOM_OVERLAY_HEADER := device/oneplus/oneplus3/multirom/mr_qcom_overlay.h
+MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
+# bootmenu
+DEVICE_RESOLUTION := 1080x1920
+MR_PIXEL_FORMAT := "RGBA_8888"
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+MR_DEV_BLOCK_BOOTDEVICE := true
+
+#Force populating /dev/block/platform/msm_sdcc.1/by-name
+#from the emmc
+MR_POPULATE_BY_NAME_PATH := "/dev/block/platform/msm_sdcc.1/by-name"
