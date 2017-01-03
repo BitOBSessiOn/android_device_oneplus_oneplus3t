@@ -29,28 +29,6 @@ ifeq ($(TARGET_DEVICE),oneplus3)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-ACTUAL_INI_FILE := /system/etc/wifi/WCNSS_qcom_cfg.ini
-WCNSS_INI_SYMLINK := $(TARGET_OUT)/etc/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
-
-ACTUAL_MAC_FILE := /persist/wlan_mac.bin
-WCNSS_MAC_SYMLINK := $(TARGET_OUT)/etc/firmware/wlan/qca_cld/wlan_mac.bin
-
-$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/qca_cld/; \
-    ln -sf $(ACTUAL_INI_FILE) \
-            $(WCNSS_INI_SYMLINK))
-
-$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/qca_cld/; \
-    ln -sf $(ACTUAL_MAC_FILE) \
-            $(WCNSS_MAC_SYMLINK))
-
-ACTUAL_BT_FILE := /bt_firmware/image/btfw32.tlv
-BT_SYMLINK := $(TARGET_OUT)/vendor/firmware/btfw32.tlv
-
-$(shell mkdir -p $(TARGET_OUT)/vendor/firmware/; \
-    ln -sf $(ACTUAL_BT_FILE) \
-            $(BT_SYMLINK))
-
-IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
 
 IMS_SYMLINKS := $(addprefix $(TARGET_OUT)/app/ims/lib/arm64/,$(notdir $(IMS_LIBS)))
 $(IMS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)

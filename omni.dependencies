@@ -7,24 +7,6 @@
   },
   {
     "remote": "omnirom",
-    "repository": "android_hardware_qcom_media-caf-msm8996",
-    "target_path": "hardware/qcom/media-caf-msm8996",
-    "revision": "android-6.0"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "android_hardware_qcom_audio-caf-msm8996",
-    "target_path": "hardware/qcom/audio-caf-msm8996",
-    "revision": "android-6.0"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "android_device_qcom_caf-sepolicy",
-    "target_path": "device/qcom/sepolicy",
-    "revision": "android-6.0"
-  },
-  {
-    "remote": "omnirom",
     "repository": "android_frameworks_av",
     "target_path": "frameworks/av-caf",
     "revision": "android-6.0-caf"
@@ -34,24 +16,6 @@
     "repository": "android_frameworks_native",
     "target_path": "frameworks/native-caf",
     "revision": "android-6.0-caf"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "android_hardware_ril",
-    "target_path": "hardware/ril-caf",
-    "revision": "android-6.0-caf"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "android_packages_apps_SnapdragonCamera",
-    "target_path": "packages/apps/SnapdragonCamera",
-    "revision": "android-6.0"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "vendor_qcom_opensource_dataservices",
-    "target_path": "vendor/qcom/opensource/dataservices",
-    "revision": "android-6.0"
   },
   {
     "remote": "omnirom",
@@ -78,21 +42,9 @@
     "revision": "android-6.0"
   },
   {
-    "remote": "omnirom",
-    "repository": "android_external_ant-wireless_antradio-library",
-    "target_path": "external/ant-wireless/antradio-library",
-    "revision": "android-6.0"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "android_external_ant-wireless_ant_service",
-    "target_path": "external/ant-wireless/ant_service",
-    "revision": "android-6.0"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "android_external_ant-wireless_ant_native",
-    "target_path": "external/ant-wireless/ant_native",
-    "revision": "android-6.0"
+    "remote": "github",
+    "repository": "Grarak/android_kernel_oneplus_msm8996",
+    "target_path": "kernel/oneplus/msm8996",
+    "revision": "cm-14.1"
   }
 ]

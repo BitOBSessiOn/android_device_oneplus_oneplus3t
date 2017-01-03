@@ -18,7 +18,6 @@
 # device-specific aspects (drivers) with a device-agnostic
 # product configuration (apps).
 #
--include vendor/oneplus/oneplus3/BoardConfigVendor.mk
 
 BOARD_PATH := device/oneplus/oneplus3
 
@@ -48,7 +47,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 ENABLE_CPUSETS := true
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=enforcing user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.bootdevice=624000.ufshc
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.bootdevice=624000.ufshc
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x02000000
@@ -59,7 +58,7 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8996
-TARGET_KERNEL_CONFIG := msm8996_oneplus3_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_oneplus3_defconfig
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
@@ -91,60 +90,8 @@ TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 # Time Daemon
 BOARD_USES_QC_TIME_SERVICES := true
 
-# Audio/media
-TARGET_QCOM_AUDIO_VARIANT := caf-msm8996
-TARGET_QCOM_MEDIA_VARIANT := caf-msm8996
-
-# audio
-#AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
-AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
-#AUDIO_FEATURE_ENABLED_APE_OFFLOAD := true
-#AUDIO_FEATURE_ENABLED_ALAC_OFFLOAD := true
-AUDIO_FEATURE_ENABLED_ANC_HEADSET := true
-AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
-AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
-AUDIO_FEATURE_ENABLED_DEV_ARBI := true
-AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
-AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
-AUDIO_FEATURE_ENABLED_FLUENCE := true
-AUDIO_FEATURE_ENABLED_HFP := true
-AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
-AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
-AUDIO_FEATURE_ENABLED_NT_PAUSE_TIMEOUT := true
-AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
-AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
-AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
-#AUDIO_FEATURE_ENABLED_VORBIS_OFFLOAD := true
-#AUDIO_FEATURE_ENABLED_WMA_OFFLOAD := true
-
-AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
-BOARD_USES_ALSA_AUDIO := true
-USE_CUSTOM_AUDIO_POLICY := 1
-
-# Camera
-USE_CAMERA_STUB := true
-
 # Disable secure discard because it's SLOW
 BOARD_SUPPRESS_SECURE_ERASE := true
-
-# Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_QCOM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(BOARD_PATH)/bluetooth
-BOARD_HAS_QCA_BT_ROME := true
-QCOM_BT_USE_BTNV := true
-
-# Wifi
-BOARD_HAS_QCOM_WLAN              := true
-BOARD_WLAN_DEVICE                := qcwcn
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-WIFI_DRIVER_FW_PATH_STA          := "sta"
-WIFI_DRIVER_FW_PATH_AP           := "ap"
-WIFI_DRIVER_FW_PATH_P2P          := "p2p"
 
 # charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -153,36 +100,15 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 # power hal
 TARGET_PROVIDES_POWERHAL := true
 
-# ril
-TARGET_RIL_VARIANT := caf
-COMMON_GLOBAL_CFLAGS += -DUSE_RIL_VERSION_10
-
 # libinit
 TARGET_INIT_VENDOR_LIB := libinit_oneplus3
-
-# liblights
-TARGET_PROVIDES_LIBLIGHT := true
-
-# Sensors
-COMMON_GLOBAL_CFLAGS += -DBOARD_HAS_SENSORS_GROUP
-
-# NFC
-TARGET_USES_NQ_NFC := true
-
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_CRYPTFS_HW_PATH := $(BOARD_PATH)/cryptfs_hw
 
 # Increase coldboot timeout
-TARGET_INCREASES_COLDBOOT_TIMEOUT := true
-
-# selinux
-include device/qcom/sepolicy/sepolicy.mk
-
-BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
+#TARGET_INCREASES_COLDBOOT_TIMEOUT := true
 
 # Recovery:Start
 TARGET_RECOVERY_FSTAB := $(BOARD_PATH)/configs/fstab.qcom
