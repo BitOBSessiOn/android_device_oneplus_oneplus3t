@@ -5,7 +5,7 @@
 /data       f2fs   /dev/block/sda15
 /cache      ext4   /dev/block/sda3
 /cache      f2fs   /dev/block/sda3
-/persist	ext4	/dev/block/sda2
+/persist	ext4   /dev/block/sda2
 /firmware   vfat   /dev/block/sde11
 
-/usb_otg		vfat	/dev/block/sdg1 	/dev/block/sdg		flags=display="USB-OTG";storage;wipeingui;removable
+/usb_otg	vfat	/dev/block/sdg1 	/dev/block/sdg		flags=display="USB-OTG";storage;wipeingui;removable
